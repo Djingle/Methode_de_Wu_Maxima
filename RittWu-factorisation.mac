@@ -346,7 +346,7 @@ ensCarIrr(S,Lv) := block(
 
 
 
-
+/*------------------------------------------------------------------------------------------------------------------*/
 
 /* 
 fonction récursive ... pour calculer les composantes irréductibles
