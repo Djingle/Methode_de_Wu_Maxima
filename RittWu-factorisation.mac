@@ -338,7 +338,7 @@ ensCarIrr(S,Lv) := block(
         Lres : [],
         for st in Lst do
             block(
-            enscar : ensCar(st,Lv),
+            enscar : ensCar(st,Lv),                                     /* plus général : utiliser enscarbis ? */
             if (enscar # []) then Lres : cons(enscar, Lres)
             ),
         return(Lres)
