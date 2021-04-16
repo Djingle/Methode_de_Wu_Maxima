@@ -19,6 +19,7 @@ PR(P,Q,V) := num(remainder(P,Q,V))$
 *  La définition suivante (en commentaire) est la traductioon   *
 $  itérative directe de la définition.                          *
 *_______________________________________________________________*/
+/*
 PR(P,Q,v) := block(
    [d,d1,d2,ld1,ld2],
      d1 : ldDeg(P,v),
