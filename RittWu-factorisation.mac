@@ -19,6 +19,7 @@ PR(P,Q,V) := num(remainder(P,Q,V))$
 *  La définition suivante (en commentaire) est la traductioon   *
 $  itérative directe de la définition.                          *
 *_______________________________________________________________*/
+/*
 PR(P,Q,v) := block(
    [d,d1,d2,ld1,ld2],
      d1 : ldDeg(P,v),
@@ -338,7 +339,7 @@ ensCarIrr(S,Lv) := block(
         Lres : [],
         for st in Lst do
             block(
-            enscar : ensCar(st,Lv),
+            enscar : ensCar(st,Lv),                                     /* plus général : utiliser enscarbis ? */
             if (enscar # []) then Lres : cons(enscar, Lres)
             ),
         return(Lres)
@@ -346,7 +347,7 @@ ensCarIrr(S,Lv) := block(
 
 
 
-
+/*------------------------------------------------------------------------------------------------------------------*/
 
 /* 
 fonction récursive ... pour calculer les composantes irréductibles
