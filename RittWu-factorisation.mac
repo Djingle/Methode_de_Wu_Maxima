@@ -16,10 +16,10 @@ PR(P,Q,V) := num(remainder(P,Q,V))$
 
 /*--------------------------------------------------------------* 
 *                                                               *
-*  La définition suivante (en commentaire) est la traductioon   *
+*  La définition suivante (en commentaire) est la traduction   *
 $  itérative directe de la définition.                          *
 *_______________________________________________________________*/
-/*
+/*--------------------------------------------------------------*
 PR(P,Q,v) := block(
    [d,d1,d2,ld1,ld2],
      d1 : ldDeg(P,v),
@@ -35,7 +35,7 @@ PR(P,Q,v) := block(
                   ),
   return(expand(P))
 )$
-*/
+**********************************************************************/
 
 
 /*----------------------------------------------------------------------* 
@@ -263,6 +263,11 @@ simplFact(P,Lv) := block(
           return(Lr)
 )$
 
+/*----------------------------------------------------------------------*
+*
+*       liste des arguements atomiques d'une expression
+*
+*______________________________________________________________________*/
 allArgs(E) := block(
             [La, Lr, Lt],
            if atom(E) then return([E]),
@@ -288,9 +293,12 @@ constantExpr(E,Lv) := block(
         while(i<=lg and not(member(La[i],Lv))) do i : i+1,
         return(is(i=lg+1))
 )$
-/*
-fonction utilitaire qui ajoute un même élément Elt à tous les membres de la liste ListoL
-*/
+
+/*---------------------------------------------------------------------------------------------*
+*
+*       fonction utilitaire qui ajoute un même élément Elt à tous les membres de la liste ListoL
+*
+*______________________________________________________________________________________________*/
 
 conslist(Elt, ListoL) := block(
         [l, Lr, i],
