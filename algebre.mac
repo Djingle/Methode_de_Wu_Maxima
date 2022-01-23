@@ -40,9 +40,31 @@ onbaux(M,A,B,C) := pow2(M,A,B)*norm2(A,C) - pow2(M,A,C)*norm2(A,B)$
 onb(M,A,B,C) := first(divide(onbaux(M,A,B,C),onl(A,B,C)))$
 
 prem(P,Q,X) := num(remainder(P,Q,X))$
-
+/*
 ldCoeff(exp,vr) := coeff(expand(exp),vr,hipow(expand(exp),vr))$
 
 ldDeg(exp,v) := hipow(expand(exp),v)$
+*/
 
 mp(S) := for e in S do print(ratsimp(e));
+
+pA(ax,ay) := [xA-ax,yA-ay];
+
+pB(bx, by) := [xB-bx, yB-by];
+
+pC(cx,cy) := [xC -cx, yC - cy];
+
+Ma(xm,ym) := [2*xm-(xB+xC),2*ym-(yB+yC)];
+
+Mb(xm,ym) := [2*xm-(xC+xA),2*ym-(yC+yA)];
+
+Mc(xm,ym) := [2*xm-(xB+xB),2*ym-(yB+yA)];
+
+Oo(xo,yo) := [onmed(p(xo,yo),p(xA,yA),p(xB,yB)),onmed(p(xo,yo),p(xA,yA),p(xC,yC))];
+
+Gg(xg,yg) := [3*xg-xA-xB-xC,3*yg-yA-yB-yC];
+
+Hb(xhb,yhb) := [perp(p(xhb,yhb),p(xB,yB),p(xA,yA),p(xC,yC)),onl(p(xhb,yhb),p(xA,yA),p(xC,yC))];
+
+Hh(xh,yh) := [perp(p(xh,yh),p(xA,yA),p(xB,yB),p(xC,yC)),perp(p(xh,yh),p(xB,yB),p(xA,yA),p(xC,yC))];
+

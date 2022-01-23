@@ -1,5 +1,5 @@
 /* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
-/* [ Created with wxMaxima version 18.02.0 ] */
+/* [ Created with wxMaxima version 19.07.0 ] */
 /* [wxMaxima: title   start ]
 Preuve de Desargues dans l'espace Euclidien
    [wxMaxima: title   end   ] */
@@ -534,7 +534,7 @@ lg : length(T)$ for i:1 thru lg do print(ldCoeff(T[lg-i+1],Lv[i]));
 
 
 /* [wxMaxima: comment start ]
-Certaines sont faciles à interpréter et ont déjà été signaler lors du paramétrage de la figure :
+Certaines sont faciles à interpréter et ont déjà été signalés lors du paramétrage de la figure :
 u2 # 0 : sinon O, A et B sont alignés et donc avec les contraintes les droites (AB) et (ApBp) sont confondues.
    [wxMaxima: comment end   ] */
 
@@ -547,4 +547,4 @@ Remarques
 
 
 /* Old versions of Maxima abort on loading files that end in a comment. */
-"Created with wxMaxima 18.02.0"$
+"Created with wxMaxima 19.07.0"$
