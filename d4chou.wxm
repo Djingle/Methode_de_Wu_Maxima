@@ -1,0 +1,111 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 19.07.0 ] */
+/* [wxMaxima: title   start ]
+Méthode de Chou pour résoudre des équations quadratiques
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/*load("../../prcg/wu_cours/algebre.mac")$*/
+load("RittWu-factorisation.mac")$
+/* Calcule la partie constante (libre de x) du polynome expr */
+PolRem(expr, x) := coeff(expand(expr), x, 0)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+e est l'équation qu'on va résoudre :
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+e : x^4 + 2*x^3 - 3*x^2 - 2*x + 1;
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+nldCoeff(exp, vr) := coeff(expand(exp),vr,lopow(exp,vr));
+petitCoeff(P, x) := nldCoeff(P,x)$
+grandCoeff(P, x) := ldCoeff(P, x)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+yieldSys(e,x) := block(
+    sys:[],
+    sys:cons(-r*b² + c²      - coeff(expand(e), x, 0),sys),
+    sys:cons(2*(a*c - b*r)   - coeff(expand(e), x, 1),sys),
+    sys:cons(-r + 2*c + a² - coeff(expand(e), x, 2),sys),
+    sys:cons(2*a                 - coeff(expand(e), x, 3),sys),
+    return(sys)
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+e1 : 2*a                 - coeff(expand(e), x, 3);
+e2 : -r + 2*c + a² - coeff(expand(e), x, 2);
+e3 : 2*(a*c - b*r)   - coeff(expand(e), x, 1);
+e4 : -r*b² + c²      - coeff(expand(e), x, 0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+sys : yieldSys(e,x);
+vars : [r, b, a]$
+P : expand(eliminate(sys, vars));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+listeDiv(e) := block(
+    Lf : [],
+    if (e=0) then return(Lf),
+    if (e>0) then block(
+        for i:1 thru round(e/2+1) do block(
+            if remainder(e, i) = 0 then
+                Lf : cons(i, Lf)
+        )
+    ),
+    if (e<0) then block(
+        for i:-1 step -1 thru round(e/2-1) do block(
+            if remainder(e,i) = 0 then
+                Lf : cons(i,Lf)
+        )
+    ),
+    Lf : cons(e, Lf),
+    return(Lf)
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+RatSol(P, x) := block(
+    /*[Ls,L1,L2],*/
+    Ls : [],
+    L1 : listeDiv(first(petitCoeff(P, x))),
+    L2 : listeDiv(first(grandCoeff(P, x))),
+    for p in L1 do block(
+        for q in L2 do
+            if ev(P,x=p/q)=0 then Ls : cons(p/q, Ls)
+    ),
+    return(Ls)
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Ls:RatSol(P,c);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+L1 : listeDiv(first(petitCoeff(P, c)));
+L2 : listeDiv(first(grandCoeff(P, c)));
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 19.07.0"$

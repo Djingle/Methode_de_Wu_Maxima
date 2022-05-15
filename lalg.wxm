@@ -1,0 +1,170 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 19.07.0 ] */
+/* [wxMaxima: input   start ] */
+defstruct(p(x=0, y=0))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+midx(A,B) := (A@x+B@x)/2$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+midy(A,B) := (A@y+B@y)/2$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+baryx(A,B,C) := (A@x+B@x+C@x)/3$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+baryy(A,B,C) := (A@y+B@y+C@y)/3$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+estmilx(M,A,B) := 2*M@x - A@x - B@x$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+estmily(M,A,B) := 2*M@y - A@y - B@y$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+estisobaryx(G,A,B,C) := 3*M@x - A@x - B@x -C@x$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+estisobaryy(G,A,B,C) := 3*M@y - A@y - B@y -C@y$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+perp(A,B,C,D) := (A@x-B@x)*(C@x-D@x)+(A@y-B@y)*(C@y-D@y)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+onl(P,A,B) := (P@x-A@x)*(A@y-B@y) - (P@y-A@y)*(A@x-B@x)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+paral(A,B,C,D) := (A@x-B@x)*(C@y-D@y)-(A@y-B@y)*(C@x-D@x)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+egd(A,B,C,D) := (A@x-B@x)^2+(A@y-B@y)^2-(C@x-D@x)^2-(C@y-D@y)^2$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+onmed(M,A,B) := egd(M,A,M,B)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+norm2(A,B) := (A@x-B@x)^2+(A@y-B@y)^2$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pow2(M,A,B) := ((M@x - A@x)*(A@y-B@y)-(M@y-A@y)*(A@x-B@x))^2$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+distp2D(M,A,B) := ((M@x - A@x)*(A@y-B@y)-(M@y-A@y)*(A@x-B@x))^2/((A@x -B@x)^2 + (A@y - B@y)^2)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+onbaux(M,A,B,C) := pow2(M,A,B)*norm2(A,C) - pow2(M,A,C)*norm2(A,B)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+onb(M,A,B,C) := first(divide(onbaux(M,A,B,C),onl(A,B,C)))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+prem(P,Q,X) := num(remainder(P,Q,X))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mp(S) := for e in S do print(ratsimp(e))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pA(ax,ay) := [xA-ax,yA-ay]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pB(bx, by) := [xB-bx, yB-by]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pC(cx,cy) := [xC -cx, yC - cy]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Ma(xm,ym) := [2*xm-(xB+xC),2*ym-(yB+yC)]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Mb(xm,ym) := [2*xm-(xC+xA),2*ym-(yC+yA)]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Mc(xm,ym) := [2*xm-(xB+xB),2*ym-(yB+yA)]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Oo(xo,yo) := [onmed(p(xo,yo),p(xA,yA),p(xB,yB)),onmed(p(xo,yo),p(xA,yA),p(xC,yC))]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Gg(xg,yg) := [3*xg-xA-xB-xC,3*yg-yA-yB-yC]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Ha(xha, yha) := [perp(p(xha,yha),p(xA,yA),p(xB,yB),p(xC,yC)), onl(p(xha,yha),p(xB,yB),p(xC,yC))]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hb(xhb,yhb) := [perp(p(xhb,yhb),p(xB,yB),p(xA,yA),p(xC,yC)),onl(p(xhb,yhb),p(xA,yA),p(xC,yC))]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hc(xhc,yhc) := [perp(p(xhc,yhc),p(xC,yC),p(xA,yA),p(xB,yB)),onl(p(xhc,yhc),p(xB,yB),p(xA,yA))]$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Hh(xh,yh) := [perp(p(xh,yh),p(xA,yA),p(xB,yB),p(xC,yC)),perp(p(xh,yh),p(xB,yB),p(xA,yA),p(xC,yC))]$
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 19.07.0"$
