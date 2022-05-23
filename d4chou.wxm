@@ -53,7 +53,7 @@ e4 : -r*b² + c²      - coeff(expand(e), x, 0);
 
 /* [wxMaxima: input   start ] */
 sys : yieldSys(e,x);
-vars : [r, b, a]$
+vars : [b, a, c]$
 P : expand(eliminate(sys, vars));
 /* [wxMaxima: input   end   ] */
 
@@ -87,8 +87,10 @@ RatSol(P, x) := block(
     L1 : listeDiv(first(petitCoeff(P, x))),
     L2 : listeDiv(first(grandCoeff(P, x))),
     for p in L1 do block(
-        for q in L2 do
-            if ev(P,x=p/q)=0 then Ls : cons(p/q, Ls)
+        for q in L2 do block(
+            v : p/q,
+            if ev(P,x=v)=0 then Ls : cons(v, Ls)
+        )
     ),
     return(Ls)
 );
@@ -96,13 +98,13 @@ RatSol(P, x) := block(
 
 
 /* [wxMaxima: input   start ] */
-Ls:RatSol(P,c);
+Ls:RatSol(P,r);
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-L1 : listeDiv(first(petitCoeff(P, c)));
-L2 : listeDiv(first(grandCoeff(P, c)));
+L1 : listeDiv(first(petitCoeff(P, r)));
+L2 : listeDiv(first(grandCoeff(P, r)));
 /* [wxMaxima: input   end   ] */
 
 
